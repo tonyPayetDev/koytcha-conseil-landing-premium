@@ -130,31 +130,25 @@
   .step .idx{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--brand-bright);min-width:44px;font-weight:500}
   .step h4{font-size:19px;font-weight:500;margin-bottom:6px;letter-spacing:.01em}
   .step p{color:rgba(255,255,255,.64);font-size:14.5px;font-weight:300}
-  /* HyperFrames motion mount */
-  .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:linear-gradient(160deg,#0c455a,#08303f);aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
-  .hf-stage video{width:100%;height:100%;object-fit:cover;display:block}
-  .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-  .hf-photo-veil{position:absolute;inset:0;background:linear-gradient(155deg,rgba(8,48,63,.86),rgba(8,48,63,.55) 55%,rgba(17,146,184,.35));z-index:1}
-  .hf-badge{position:absolute;left:16px;bottom:14px;z-index:3;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:8px}
+  /* section 3 — animated image (cinemagraph CSS) */
+  .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
+  .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:60% 40%;animation:kenburns 24s ease-in-out infinite alternate;will-change:transform}
+  @keyframes kenburns{0%{transform:scale(1.08) translate(0,0)}100%{transform:scale(1.24) translate(-3.5%,-2.5%)}}
+  .hf-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(157deg,rgba(8,48,63,.86),rgba(8,48,63,.4) 52%,rgba(17,146,184,.42))}
+  .hf-sweep{position:absolute;top:-50%;height:200%;width:55%;left:-60%;z-index:2;pointer-events:none;transform:rotate(16deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:sweep 7s ease-in-out infinite}
+  @keyframes sweep{0%{left:-60%}58%,100%{left:135%}}
+  .hf-p{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--brand-bright);z-index:2;box-shadow:0 0 12px var(--brand-bright);animation:floaty 9s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-26px);opacity:.75}}
+  .hf-badge{position:absolute;top:16px;left:16px;z-index:3;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:8px}
   .hf-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand-bright);box-shadow:0 0 12px var(--brand-bright);animation:pulse 1.8s infinite}
-  @keyframes pulse{50%{opacity:.35}}
-  /* fallback animated method wheel (until HyperFrames MP4 mounts) */
-  .hf-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .hf-orbit{position:relative;width:74%;aspect-ratio:1}
-  .hf-orbit .ring{position:absolute;inset:0;border:1px solid rgba(59,187,221,.22);border-radius:50%;animation:spin 26s linear infinite}
-  .hf-orbit .ring.r2{inset:16%;border-style:dashed;animation-duration:18s;animation-direction:reverse}
-  .hf-orbit .ring.r3{inset:32%;border-color:rgba(199,166,96,.3)}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .hf-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-  .hf-core .k{font-family:'Cormorant Garamond',serif;font-size:64px;color:var(--brand-bright);line-height:1}
-  .hf-core .s{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:4px}
-  .hf-dot{position:absolute;width:12px;height:12px;background:var(--brand-bright);border-radius:50%;top:50%;left:50%;margin:-6px;box-shadow:0 0 16px var(--brand-bright)}
-  .hf-dot.d1{transform:rotate(0deg) translateX(37%) rotate(0)}
-  .hf-lbl{position:absolute;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:500}
-  .hf-lbl-1{top:6%;left:50%;transform:translateX(-50%)}
-  .hf-lbl-2{top:50%;right:2%;transform:translateY(-50%)}
-  .hf-lbl-3{bottom:6%;left:50%;transform:translateX(-50%)}
-  .hf-lbl-4{top:50%;left:2%;transform:translateY(-50%)}
+  @keyframes pulse{50%{opacity:.3}}
+  .hf-cap{position:absolute;left:26px;right:26px;bottom:26px;z-index:3;color:#fff}
+  .hf-cap .t{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,38px);line-height:1.05}
+  .hf-cap .t b{color:var(--brand-bright);font-weight:600}
+  .hf-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .hf-chip{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.32);padding:6px 13px;border-radius:20px;background:rgba(8,48,63,.35);backdrop-filter:blur(4px);opacity:0;animation:chipIn .6s var(--ease) forwards,chipGlow 6s ease-in-out infinite}
+  @keyframes chipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes chipGlow{0%,100%{border-color:rgba(255,255,255,.32);color:#fff;box-shadow:none}12%{border-color:var(--brand-bright);color:var(--brand-bright);box-shadow:0 0 16px -5px var(--brand-bright)}}
 
   /* services */
   .services{background:var(--ivory)}
@@ -386,21 +380,24 @@
       </div>
       <div class="reveal d1">
         <div class="hf-stage" id="hfStage">
-          <!-- Vraie image du site (société) en toile de fond + animation CSS de la méthode -->
-          <img class="hf-photo" src="assets/societe.webp" alt="Le cabinet Koytcha Conseil à Saint-Denis">
-          <div class="hf-photo-veil"></div>
-          <video id="hfVideo" autoplay muted loop playsinline poster="assets/societe.webp" style="display:none"></video>
-          <div class="hf-fallback" id="hfFallback">
-            <div class="hf-orbit">
-              <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
-              <span class="hf-lbl hf-lbl-1">Écouter</span>
-              <span class="hf-lbl hf-lbl-2">Analyser</span>
-              <span class="hf-lbl hf-lbl-3">Construire</span>
-              <span class="hf-lbl hf-lbl-4">Accompagner</span>
-              <div class="hf-core"><div class="k">360°</div><div class="s">Méthode Koytcha</div></div>
+          <!-- Vraie image du site (société) transformée en animation (cinémagraphe CSS) -->
+          <img class="hf-photo" src="assets/societe.webp" alt="Le cabinet Laplace / Koytcha Conseil à Saint-Denis">
+          <div class="hf-veil"></div>
+          <div class="hf-sweep"></div>
+          <span class="hf-p" style="top:24%;left:20%"></span>
+          <span class="hf-p" style="top:44%;left:70%;animation-delay:1.6s"></span>
+          <span class="hf-p" style="top:64%;left:32%;animation-delay:3.1s"></span>
+          <span class="hf-p" style="top:34%;left:54%;animation-delay:2.3s"></span>
+          <span class="hf-badge">Animation · Méthode 360°</span>
+          <div class="hf-cap">
+            <div class="t">La méthode <b>360°</b></div>
+            <div class="hf-chips">
+              <span class="hf-chip" style="animation-delay:.3s,0s">Écouter</span>
+              <span class="hf-chip" style="animation-delay:.6s,1.5s">Analyser</span>
+              <span class="hf-chip" style="animation-delay:.9s,3s">Construire</span>
+              <span class="hf-chip" style="animation-delay:1.2s,4.5s">Accompagner</span>
             </div>
           </div>
-          <span class="hf-badge">Motion · HyperFrames</span>
         </div>
       </div>
     </div>
@@ -592,13 +589,6 @@
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');menu.classList.remove('open')}));
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
-  // Mount HyperFrames motion for section 3 if the rendered MP4 is present
-  (function(){
-    const v=document.getElementById('hfVideo'),fb=document.getElementById('hfFallback');
-    fetch('assets/approche-motion.mp4',{method:'HEAD'}).then(r=>{
-      if(r.ok){v.src='assets/approche-motion.mp4';v.style.display='block';fb.style.display='none';}
-    }).catch(()=>{});
-  })();
 </script>
 </body>
 </html>
