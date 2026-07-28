@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koytcha Conseil — Le spécialiste de la gestion de patrimoine à La Réunion</title>
+<meta name="description" content="Depuis plus de 26 ans, Koytcha Conseil accompagne les Réunionnais dans la gestion, l'investissement et l'optimisation fiscale de leur patrimoine. Conseil, Investir, Défiscaliser.">
+<meta property="og:title" content="Koytcha Conseil — Gestion de patrimoine à La Réunion">
+<meta property="og:description" content="Conseil, Investir, Défiscaliser. 26 ans d'expertise patrimoniale au service des Réunionnais.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c1a2b;          /* bleu nuit encre */
+    --ink-soft:#16283d;
+    --ivory:#f8f4ec;        /* ivoire chaud */
+    --ivory-2:#fbf8f2;
+    --cream:#efe7d8;
+    --gold:#b28a3e;         /* or sobre */
+    --gold-bright:#c9a24b;
+    --slate:#4a5568;
+    --slate-2:#6b7688;
+    --line:rgba(178,138,62,.28);
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--ivory);
+    line-height:1.7;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:.2px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .eyebrow{
+    font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+  .eyebrow.center{justify-content:center}
+  .eyebrow.center::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;letter-spacing:.02em;
+    padding:15px 30px;border-radius:2px;transition:all .35s var(--ease);cursor:pointer;border:1px solid transparent;
+  }
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 8px 24px -12px rgba(178,138,62,.6)}
+  .btn-gold:hover{background:var(--ink);box-shadow:0 12px 30px -12px rgba(12,26,43,.55);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-light{border-color:rgba(248,244,236,.35);color:var(--ivory)}
+  .btn-light:hover{background:var(--ivory);color:var(--ink)}
+  .btn svg{width:16px;height:16px}
+
+  /* ---- nav ---- */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .4s var(--ease)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;transition:padding .4s var(--ease)}
+  header.scrolled{background:rgba(248,244,236,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  header.scrolled .nav{padding:14px 0}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;letter-spacing:1px;color:var(--ink)}
+  .brand .sub{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:4px;font-weight:600}
+  .navlinks{display:flex;align-items:center;gap:38px}
+  .navlinks a.link{font-size:13.5px;font-weight:400;color:var(--ink);position:relative;letter-spacing:.02em;opacity:.85;transition:opacity .3s}
+  .navlinks a.link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
+  .navlinks a.link:hover{opacity:1}
+  .navlinks a.link:hover::after{width:100%}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* ---- hero ---- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;
+    background:linear-gradient(135deg,#0c1a2b 0%,#12243a 55%,#16283d 100%);color:var(--ivory);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 78% 30%,rgba(201,162,75,.16),transparent 45%),
+               radial-gradient(circle at 12% 88%,rgba(201,162,75,.08),transparent 40%);}
+  .hero-grid{position:absolute;inset:0;opacity:.05;
+    background-image:linear-gradient(var(--gold) 1px,transparent 1px),linear-gradient(90deg,var(--gold) 1px,transparent 1px);
+    background-size:64px 64px;mask-image:radial-gradient(circle at 70% 40%,#000,transparent 75%)}
+  .hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:80px}
+  .hero-inner{max-width:760px}
+  .hero h1{font-size:clamp(42px,6.4vw,82px);color:var(--ivory);margin:26px 0 10px}
+  .hero h1 .accent{color:var(--gold-bright);font-style:italic;font-weight:500}
+  .hero p.lead{font-size:clamp(16px,1.4vw,19px);color:rgba(248,244,236,.78);max-width:560px;font-weight:300;margin-top:22px}
+  .hero-cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+  .hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;
+    align-items:center;gap:10px;font-size:10.5px;letter-spacing:.25em;text-transform:uppercase;color:rgba(248,244,236,.5)}
+  .hero-scroll .line{width:1px;height:44px;background:linear-gradient(var(--gold),transparent);animation:drop 2.2s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
+    55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---- trust strip ---- */
+  .trust{background:var(--ink-soft);color:var(--ivory);border-top:1px solid rgba(201,162,75,.2)}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:38px 28px}
+  .trust .item{text-align:center;position:relative}
+  .trust .item:not(:last-child)::after{content:"";position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:1px;height:44px;background:rgba(201,162,75,.25)}
+  .trust .num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--gold-bright);line-height:1}
+  .trust .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,244,236,.62);margin-top:8px}
+
+  /* ---- section base ---- */
+  section{position:relative}
+  .sec{padding:110px 0}
+  .sec-head{max-width:640px;margin-bottom:64px}
+  .sec-head.center{margin:0 auto 64px;text-align:center}
+  .sec-head h2{font-size:clamp(32px,4vw,50px);margin:18px 0 16px}
+  .sec-head p{color:var(--slate);font-size:16.5px;font-weight:300}
+  .lead-quote{font-style:italic;color:var(--gold)}
+
+  /* ---- pillars ---- */
+  .pillars{background:var(--ivory-2)}
+  .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--ivory)}
+  .pillar{padding:52px 42px;border-right:1px solid var(--line);transition:background .4s var(--ease);position:relative;overflow:hidden}
+  .pillar:last-child{border-right:none}
+  .pillar::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+  .pillar:hover{background:var(--ink);color:var(--ivory)}
+  .pillar:hover::before{transform:scaleX(1)}
+  .pillar:hover .p-num,.pillar:hover .p-desc{color:rgba(248,244,236,.7)}
+  .pillar:hover .p-ico{border-color:var(--gold-bright);background:rgba(201,162,75,.12)}
+  .p-num{font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:600;transition:color .4s}
+  .p-ico{width:58px;height:58px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:22px 0;transition:all .4s var(--ease)}
+  .p-ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.4}
+  .pillar h3{font-size:29px;margin-bottom:12px}
+  .p-desc{color:var(--slate);font-size:15px;font-weight:300;transition:color .4s}
+
+  /* ---- approach split ---- */
+  .approach{background:var(--ink);color:var(--ivory);overflow:hidden}
+  .approach .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .approach h2{color:var(--ivory);font-size:clamp(32px,4vw,52px)}
+  .approach .eyebrow{color:var(--gold-bright)}
+  .approach .eyebrow::before{background:var(--gold-bright)}
+  .steps{margin-top:14px}
+  .step{display:flex;gap:24px;padding:26px 0;border-bottom:1px solid rgba(201,162,75,.18)}
+  .step:last-child{border-bottom:none}
+  .step .idx{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-bright);min-width:44px;font-weight:500}
+  .step h4{font-size:19px;font-weight:500;margin-bottom:6px;letter-spacing:.01em}
+  .step p{color:rgba(248,244,236,.62);font-size:14.5px;font-weight:300}
+  .approach-card{background:linear-gradient(160deg,#16283d,#0c1a2b);border:1px solid rgba(201,162,75,.22);padding:48px;border-radius:3px;position:relative}
+  .approach-card::before{content:"“";position:absolute;top:14px;left:26px;font-family:'Cormorant Garamond',serif;font-size:110px;color:rgba(201,162,75,.18);line-height:1}
+  .approach-card blockquote{font-family:'Cormorant Garamond',serif;font-size:27px;line-height:1.35;font-style:italic;color:var(--ivory);position:relative;z-index:1;margin-top:30px}
+  .approach-card .attr{margin-top:26px;padding-top:22px;border-top:1px solid rgba(201,162,75,.2)}
+  .approach-card .attr .n{font-weight:600;font-size:15px;color:var(--gold-bright)}
+  .approach-card .attr .r{font-size:13px;color:rgba(248,244,236,.55);font-weight:300}
+
+  /* ---- services ---- */
+  .services{background:var(--ivory)}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .svc{background:var(--ivory-2);border:1px solid var(--line);padding:40px;display:flex;gap:24px;transition:all .4s var(--ease)}
+  .svc:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(12,26,43,.4);border-color:var(--gold)}
+  .svc .s-ico{min-width:48px;height:48px;border-radius:2px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+  .svc .s-ico svg{width:22px;height:22px;stroke:var(--gold-bright);fill:none;stroke-width:1.4}
+  .svc h3{font-size:24px;margin-bottom:8px}
+  .svc p{color:var(--slate);font-size:14.5px;font-weight:300}
+
+  /* ---- group / about ---- */
+  .group{background:var(--cream)}
+  .group .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+  .group-visual{aspect-ratio:4/5;background:linear-gradient(160deg,#16283d,#0c1a2b);border-radius:3px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:40px}
+  .group-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(201,162,75,.2),transparent 55%)}
+  .group-visual .mono{position:absolute;top:34px;left:40px;font-family:'Cormorant Garamond',serif;font-size:150px;color:rgba(201,162,75,.14);font-weight:700;line-height:.8}
+  .group-visual .cap{position:relative;z-index:1;color:var(--ivory)}
+  .group-visual .cap .k{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-bright)}
+  .group-visual .cap .v{font-size:13.5px;color:rgba(248,244,236,.7);font-weight:300;margin-top:6px;max-width:240px}
+  .group h2{font-size:clamp(30px,3.6vw,46px);margin:16px 0 20px}
+  .group p{color:var(--slate);margin-bottom:16px;font-weight:300}
+  .group .feats{margin-top:26px;display:grid;gap:14px}
+  .group .feat{display:flex;gap:14px;align-items:flex-start}
+  .group .feat svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;margin-top:3px;flex-shrink:0}
+  .group .feat b{font-weight:600;font-size:15px}
+  .group .feat span{color:var(--slate);font-size:14px;font-weight:300;display:block}
+
+  /* ---- resources ---- */
+  .resources{background:var(--ivory-2)}
+  .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .res{border:1px solid var(--line);padding:44px;background:var(--ivory);transition:all .4s var(--ease);position:relative;overflow:hidden}
+  .res:hover{background:var(--ink);color:var(--ivory)}
+  .res:hover .r-desc{color:rgba(248,244,236,.68)}
+  .res:hover .r-link{color:var(--gold-bright)}
+  .res .r-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .res h3{font-size:27px;margin:14px 0 10px}
+  .res .r-desc{color:var(--slate);font-size:14.5px;font-weight:300;transition:color .4s}
+  .res .r-link{display:inline-flex;align-items:center;gap:9px;margin-top:22px;font-size:13px;font-weight:500;color:var(--ink);letter-spacing:.03em;transition:color .4s}
+  .res .r-link svg{width:15px;height:15px;transition:transform .3s}
+  .res:hover .r-link svg{transform:translateX(5px)}
+
+  /* ---- contact ---- */
+  .contact{background:var(--ink);color:var(--ivory)}
+  .contact .split{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+  .contact h2{color:var(--ivory);font-size:clamp(32px,4vw,50px);margin:16px 0 18px}
+  .contact .eyebrow{color:var(--gold-bright)}
+  .contact .eyebrow::before{background:var(--gold-bright)}
+  .contact .intro{color:rgba(248,244,236,.7);font-weight:300;margin-bottom:36px;max-width:420px}
+  .cinfo{display:grid;gap:2px}
+  .cinfo a,.cinfo .row{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(201,162,75,.16);transition:padding-left .3s var(--ease)}
+  .cinfo a:hover{padding-left:8px}
+  .cinfo .ci-ico{width:40px;height:40px;border:1px solid rgba(201,162,75,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cinfo .ci-ico svg{width:18px;height:18px;stroke:var(--gold-bright);fill:none;stroke-width:1.5}
+  .cinfo .ci-lab{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(248,244,236,.5);margin-bottom:3px}
+  .cinfo .ci-val{font-size:16px;color:var(--ivory);font-weight:400}
+  form.cform{background:linear-gradient(160deg,#16283d,#0f1f31);border:1px solid rgba(201,162,75,.2);padding:42px;border-radius:3px}
+  form.cform .fg{margin-bottom:20px}
+  form.cform label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,244,236,.6);margin-bottom:9px}
+  form.cform input,form.cform textarea{width:100%;background:rgba(248,244,236,.05);border:1px solid rgba(201,162,75,.22);color:var(--ivory);
+    padding:14px 16px;font-family:inherit;font-size:15px;border-radius:2px;transition:border .3s}
+  form.cform input:focus,form.cform textarea:focus{outline:none;border-color:var(--gold-bright);background:rgba(248,244,236,.08)}
+  form.cform textarea{resize:vertical;min-height:110px}
+  form.cform .btn-gold{width:100%;justify-content:center;margin-top:6px}
+  form.cform .note{font-size:12px;color:rgba(248,244,236,.45);margin-top:16px;font-weight:300;text-align:center}
+
+  /* ---- footer ---- */
+  footer{background:#081320;color:rgba(248,244,236,.6);padding:60px 0 30px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:44px;border-bottom:1px solid rgba(201,162,75,.14)}
+  .foot-brand .name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--ivory);letter-spacing:1px}
+  .foot-brand .sub{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:5px}
+  .foot-brand p{font-size:14px;font-weight:300;margin-top:18px;max-width:320px;line-height:1.7}
+  .foot-col h5{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:18px;font-weight:600}
+  .foot-col a{display:block;font-size:14px;font-weight:300;padding:7px 0;transition:color .3s}
+  .foot-col a:hover{color:var(--gold-bright)}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:12.5px;font-weight:300;flex-wrap:wrap;gap:12px}
+  .foot-social{display:flex;gap:14px}
+  .foot-social a{width:36px;height:36px;border:1px solid rgba(201,162,75,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s}
+  .foot-social a:hover{background:var(--gold);border-color:var(--gold)}
+  .foot-social svg{width:16px;height:16px;fill:currentColor}
+
+  /* ---- reveal ---- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+  /* ---- responsive ---- */
+  @media(max-width:920px){
+    .navlinks{position:fixed;inset:0 0 0 auto;width:min(80vw,340px);background:var(--ink);flex-direction:column;
+      justify-content:center;gap:30px;transform:translateX(100%);transition:transform .45s var(--ease);padding:40px}
+    .navlinks.open{transform:none}
+    .navlinks a.link{color:var(--ivory);font-size:18px}
+    .burger{display:flex;z-index:110}
+    .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .burger.open span:nth-child(2){opacity:0}
+    .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .burger.open span{background:var(--ivory)}
+    .trust .wrap{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+    .trust .item:nth-child(2)::after{display:none}
+    .pillar-grid{grid-template-columns:1fr}
+    .pillar{border-right:none;border-bottom:1px solid var(--line)}
+    .pillar:last-child{border-bottom:none}
+    .approach .split,.group .split,.contact .split,.svc-grid,.res-grid{grid-template-columns:1fr;gap:44px}
+    .svc-grid,.res-grid{gap:20px}
+    .foot-top{grid-template-columns:1fr;gap:36px}
+    .group .split{gap:44px}
+    .group-visual{aspect-ratio:16/10}
+  }
+  @media(max-width:520px){
+    .sec{padding:78px 0}.wrap{padding:0 20px}
+    .trust .wrap{grid-template-columns:1fr 1fr}
+    .approach-card,form.cform,.res,.svc,.pillar{padding:34px 26px}
+    .hero .wrap{padding-top:130px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Koytcha Conseil, accueil">
+      <span class="name">Koytcha</span>
+      <span class="sub">Conseil · Patrimoine</span>
+    </a>
+    <nav class="navlinks" id="menu">
+      <a class="link" href="#groupe">Le Groupe</a>
+      <a class="link" href="#approche">Notre approche</a>
+      <a class="link" href="#services">Services</a>
+      <a class="link" href="#ressources">Ressources</a>
+      <a class="btn btn-gold" href="#contact">Prendre rendez-vous</a>
+    </nav>
+    <div class="burger" id="burger" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow reveal in">Gestion de patrimoine · La Réunion</span>
+      <h1 class="reveal in d1">Bâtissez, protégez et transmettez <span class="accent">votre patrimoine</span>.</h1>
+      <p class="lead reveal in d2">Depuis plus de 26 ans, Koytcha Conseil accompagne les particuliers et les chefs d'entreprise réunionnais dans chaque décision patrimoniale — avec indépendance, rigueur et proximité.</p>
+      <div class="hero-cta reveal in d3">
+        <a href="#contact" class="btn btn-gold">Prendre rendez-vous
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#approche" class="btn btn-light">Découvrir notre approche</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Défiler</span><span class="line"></span></div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="item reveal"><div class="num">26+</div><div class="lab">Années d'expertise</div></div>
+    <div class="item reveal d1"><div class="num">3</div><div class="lab">Pôles de conseil</div></div>
+    <div class="item reveal d2"><div class="num">100%</div><div class="lab">Indépendant</div></div>
+    <div class="item reveal d3"><div class="num">974</div><div class="lab">Ancré à La Réunion</div></div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="sec pillars" id="expertise">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Nos expertises</span>
+      <h2>Trois métiers, une seule exigence</h2>
+      <p>Conseiller, faire fructifier et optimiser : Koytcha Conseil réunit toutes les compétences patrimoniales sous un même toit, au service d'une stratégie qui vous ressemble.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal">
+        <span class="p-num">01</span>
+        <div class="p-ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M4 21h16"/></svg></div>
+        <h3>Conseil</h3>
+        <p class="p-desc">Un bilan patrimonial complet et un accompagnement sur mesure, pour prendre les bonnes décisions à chaque étape de votre vie.</p>
+      </div>
+      <div class="pillar reveal d1">
+        <span class="p-num">02</span>
+        <div class="p-ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div>
+        <h3>Investir</h3>
+        <p class="p-desc">Immobilier, placements financiers, diversification : nous construisons avec vous un patrimoine solide, cohérent et performant.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <span class="p-num">03</span>
+        <div class="p-ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>Défiscaliser</h3>
+        <p class="p-desc">Nous mobilisons les dispositifs adaptés à votre situation pour alléger votre fiscalité en toute sécurité et dans la durée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="sec approach" id="approche">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">Notre approche</span>
+        <h2>Une méthode patrimoniale, pas un produit.</h2>
+        <div class="steps">
+          <div class="step"><span class="idx">01</span><div><h4>Écouter &amp; comprendre</h4><p>Nous partons de vos objectifs de vie, de votre situation et de vos projets — jamais d'un catalogue.</p></div></div>
+          <div class="step"><span class="idx">02</span><div><h4>Analyser votre patrimoine</h4><p>Un audit à 360° : fiscalité, revenus, actifs, protection de la famille et transmission.</p></div></div>
+          <div class="step"><span class="idx">03</span><div><h4>Construire la stratégie</h4><p>Des recommandations claires et indépendantes, arbitrées avec vous et chiffrées.</p></div></div>
+          <div class="step"><span class="idx">04</span><div><h4>Accompagner dans le temps</h4><p>Un suivi régulier qui fait évoluer votre stratégie au rythme de votre vie et de la réglementation.</p></div></div>
+        </div>
+      </div>
+      <div class="approach-card reveal d1">
+        <blockquote>Small is beautiful : la vraie richesse, c'est un patrimoine maîtrisé, transmis et aligné sur ce qui compte pour vous.</blockquote>
+        <div class="attr">
+          <div class="n">Radj Koytcha</div>
+          <div class="r">Fondateur · Koytcha Conseil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Domaines d'intervention</span>
+      <h2>Un accompagnement patrimonial complet</h2>
+      <p>Du premier placement à la transmission d'entreprise, nous couvrons l'ensemble de vos besoins patrimoniaux.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="s-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <div><h3>Investissement immobilier</h3><p>Résidentiel, locatif, dispositifs outre-mer : nous sélectionnons et structurons les opérations les plus pertinentes pour votre profil.</p></div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="s-ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></svg></div>
+        <div><h3>Placements &amp; épargne</h3><p>Assurance-vie, diversification et gestion financière pour faire fructifier votre capital selon votre horizon et votre appétence au risque.</p></div>
+      </div>
+      <div class="svc reveal">
+        <div class="s-ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div><h3>Optimisation fiscale</h3><p>Réduction d'impôt, dispositifs de défiscalisation et stratégies sur mesure, pensés dans le respect strict de votre situation.</p></div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="s-ico"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12M16 17l2 2 4-4"/></svg></div>
+        <div><h3>Cession &amp; acquisition d'entreprise</h3><p>Nous accompagnons dirigeants et repreneurs à chaque étape : valorisation, structuration et sécurisation de l'opération.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROUP -->
+<section class="sec group" id="groupe">
+  <div class="wrap">
+    <div class="split">
+      <div class="group-visual reveal">
+        <span class="mono">K</span>
+        <div class="cap">
+          <div class="k">26 ans</div>
+          <div class="v">d'accompagnement patrimonial au plus près des Réunionnais.</div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <span class="eyebrow">Le Groupe</span>
+        <h2>Le spécialiste de la gestion de patrimoine à La Réunion</h2>
+        <p>Depuis plus d'un quart de siècle, Koytcha Conseil s'est imposé comme une référence de la gestion de patrimoine sur l'île. Notre indépendance nous permet de vous conseiller librement, dans votre seul intérêt.</p>
+        <p>Une équipe pluridisciplinaire — conseil, immobilier, fiscalité et transmission d'entreprise — réunie pour bâtir des stratégies durables, humaines et parfaitement adaptées au territoire réunionnais.</p>
+        <div class="feats">
+          <div class="feat"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><div><b>Conseil 100% indépendant</b><span>Aucun conflit d'intérêt : nous défendons votre patrimoine, pas un produit.</span></div></div>
+          <div class="feat"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><div><b>Une expertise locale</b><span>Une connaissance fine de la fiscalité et du marché réunionnais.</span></div></div>
+          <div class="feat"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><div><b>Une relation de confiance durable</b><span>Un interlocuteur dédié qui vous suit dans le temps.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="sec resources" id="ressources">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Ressources</span>
+      <h2>Cultivez votre culture patrimoniale</h2>
+      <p>Retrouvez nos publications et nos prises de parole pour mieux comprendre les enjeux de votre patrimoine.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res reveal">
+        <span class="r-tag">Publication · Semestriel</span>
+        <h3>Le magazine Koytcha Conseil</h3>
+        <p class="r-desc">Notre magazine semestriel décrypte l'actualité patrimoniale, fiscale et immobilière de La Réunion, avec des analyses et des cas concrets.</p>
+        <a class="r-link" href="#contact">Feuilleter le magazine
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="res reveal d1">
+        <span class="r-tag">Vidéo · Vision</span>
+        <h3>« Small is Beautiful »</h3>
+        <p class="r-desc">Radj Koytcha partage sa vision de la gestion de patrimoine : la valeur d'un accompagnement humain, mesuré et durable.</p>
+        <a class="r-link" href="#contact">Regarder la vidéo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Parlons de votre patrimoine</h2>
+        <p class="intro">Un premier échange, sans engagement, pour faire le point sur votre situation et vos projets. Nous vous recevons à Saint-Denis.</p>
+        <div class="cinfo">
+          <a href="tel:+262262979607">
+            <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.7 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.2a2 2 0 012.1-.5c.8.4 1.7.6 2.6.7a2 2 0 011.7 2z"/></svg></div>
+            <div><div class="ci-lab">Téléphone</div><div class="ci-val">0262 97 96 07</div></div>
+          </a>
+          <a href="mailto:contact@koytchaconseil.com">
+            <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 6l8 6 8-6"/></svg></div>
+            <div><div class="ci-lab">E-mail</div><div class="ci-val">contact@koytchaconseil.com</div></div>
+          </a>
+          <div class="row">
+            <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+            <div><div class="ci-lab">Adresse</div><div class="ci-val">45 rue Alexis de Villeneuve<br>97400 Saint-Denis, La Réunion</div></div>
+          </div>
+          <div class="row">
+            <div class="ci-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><div class="ci-lab">Horaires</div><div class="ci-val">Lun – Ven · 8h – 12h &amp; 14h – 17h</div></div>
+          </div>
+        </div>
+      </div>
+      <form class="cform reveal d1" onsubmit="return false">
+        <div class="fg">
+          <label for="n">Nom &amp; prénom</label>
+          <input id="n" type="text" placeholder="Votre nom" autocomplete="name" required>
+        </div>
+        <div class="fg">
+          <label for="e">E-mail</label>
+          <input id="e" type="email" placeholder="vous@exemple.com" autocomplete="email" required>
+        </div>
+        <div class="fg">
+          <label for="t">Téléphone</label>
+          <input id="t" type="tel" placeholder="0692 00 00 00" autocomplete="tel">
+        </div>
+        <div class="fg">
+          <label for="m">Votre projet</label>
+          <textarea id="m" placeholder="Décrivez en quelques mots votre besoin patrimonial…"></textarea>
+        </div>
+        <button class="btn btn-gold" type="submit">Envoyer ma demande
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="note">Réponse sous 48h ouvrées · Vos données restent strictement confidentielles.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="name">Koytcha</div>
+        <div class="sub">Conseil · Patrimoine</div>
+        <p>Le spécialiste indépendant de la gestion de patrimoine à La Réunion depuis plus de 26 ans. Conseiller, investir, défiscaliser — au service de votre sérénité.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Expertises</h5>
+        <a href="#expertise">Conseil patrimonial</a>
+        <a href="#services">Investissement immobilier</a>
+        <a href="#services">Placements &amp; épargne</a>
+        <a href="#services">Optimisation fiscale</a>
+        <a href="#services">Cession d'entreprise</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+262262979607">0262 97 96 07</a>
+        <a href="mailto:contact@koytchaconseil.com">contact@koytchaconseil.com</a>
+        <a href="#contact">45 rue Alexis de Villeneuve<br>97400 Saint-Denis</a>
+        <a href="#contact">Lun – Ven · 8h-12h / 14h-17h</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Koytcha Conseil — Tous droits réservés · Mentions légales · Politique de confidentialité</span>
+      <div class="foot-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 002.5 6a2.5 2.5 0 105 0 2.5 2.5 0 00-2.52-2.5zM3 8.98h4V21H3zM9 8.98h3.8v1.64h.05c.53-1 1.83-2.05 3.76-2.05C20.6 8.57 22 10.28 22 13.7V21h-4v-6.48c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.69-2.49 3.43V21H9z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav shrink on scroll
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40),{passive:true});
+  // mobile menu
+  const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  const toggle=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+  burger.addEventListener('click',toggle);
+  burger.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')toggle()});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');menu.classList.remove('open')}));
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
