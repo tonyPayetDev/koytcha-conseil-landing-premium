@@ -132,6 +132,8 @@
   .step p{color:rgba(255,255,255,.64);font-size:14.5px;font-weight:300}
   /* section 3 — animated image (cinemagraph CSS) */
   .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
+  .hf-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#08303f}
+  .hf-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,38,50,.30) 0,rgba(8,48,63,0) 26%,rgba(8,48,63,0) 56%,rgba(6,38,50,.86) 100%)}
   .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:60% 40%;animation:kenburns 24s ease-in-out infinite alternate,hfBreathe 12s ease-in-out infinite;will-change:transform,filter}
   @keyframes kenburns{0%{transform:scale(1.08) translate(0,0)}100%{transform:scale(1.24) translate(-3.5%,-2.5%)}}
   @keyframes hfBreathe{0%,100%{filter:saturate(1) brightness(1)}50%{filter:saturate(1.12) brightness(1.06)}}
@@ -400,21 +402,15 @@
       </div>
       <div class="reveal d1">
         <div class="hf-stage" id="hfStage">
-          <!-- Visuel groupe animé en motion-design vectoriel in-page : image nette + couches lumineuses en boucle -->
-          <img class="hf-photo" src="assets/societe.webp" alt="Le groupe Laplace / Koytcha Conseil et ses entités" fetchpriority="low">
-          <span class="hf-disc a"></span>
-          <span class="hf-disc b"></span>
-          <span class="hf-disc c"></span>
-          <div class="hf-glow hf-glow-a"></div>
-          <div class="hf-glow hf-glow-b"></div>
-          <div class="hf-shine"></div>
-          <div class="hf-veil"></div>
-          <div class="hf-sweep"></div>
-          <span class="hf-p" style="top:24%;left:20%"></span>
-          <span class="hf-p" style="top:44%;left:70%;animation-delay:1.6s"></span>
-          <span class="hf-p" style="top:64%;left:32%;animation-delay:3.1s"></span>
-          <span class="hf-p" style="top:34%;left:54%;animation-delay:2.3s"></span>
-          <span class="hf-badge">Animation · Méthode 360°</span>
+          <!-- Groupe décomposé en cercles — motion-graphic HyperFrames rendu (boucle 8s) -->
+          <video class="hf-video" autoplay muted loop playsinline preload="auto"
+                 poster="assets/societe-cercles-poster.webp"
+                 aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cercles animés">
+            <source src="assets/societe-cercles.webm" type="video/webm">
+            <source src="assets/societe-cercles.mp4" type="video/mp4">
+          </video>
+          <div class="hf-scrim"></div>
+          <span class="hf-badge">Animation · Le groupe</span>
           <div class="hf-cap">
             <div class="t">La méthode <b>360°</b></div>
             <div class="hf-chips">
