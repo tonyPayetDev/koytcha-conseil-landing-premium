@@ -132,12 +132,22 @@
   .step p{color:rgba(255,255,255,.64);font-size:14.5px;font-weight:300}
   /* section 3 — animated image (cinemagraph CSS) */
   .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
-  .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:60% 40%;animation:kenburns 24s ease-in-out infinite alternate;will-change:transform}
-  .hf-video{animation:none;transform:scale(1.02)}
+  .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:60% 40%;animation:kenburns 24s ease-in-out infinite alternate,hfBreathe 12s ease-in-out infinite;will-change:transform,filter}
   @keyframes kenburns{0%{transform:scale(1.08) translate(0,0)}100%{transform:scale(1.24) translate(-3.5%,-2.5%)}}
-  .hf-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(157deg,rgba(8,48,63,.86),rgba(8,48,63,.4) 52%,rgba(17,146,184,.42))}
-  .hf-sweep{position:absolute;top:-50%;height:200%;width:55%;left:-60%;z-index:2;pointer-events:none;transform:rotate(16deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:sweep 7s ease-in-out infinite}
+  @keyframes hfBreathe{0%,100%{filter:saturate(1) brightness(1)}50%{filter:saturate(1.12) brightness(1.06)}}
+  /* light orbs drifting behind the veil (screen-blended, position-independent) */
+  .hf-glow{position:absolute;z-index:1;width:56%;aspect-ratio:1;border-radius:50%;pointer-events:none;mix-blend-mode:screen;filter:blur(28px);opacity:.5;will-change:transform,opacity}
+  .hf-glow-a{top:-8%;left:-6%;background:radial-gradient(circle,rgba(59,187,221,.55),transparent 68%);animation:hfDriftA 15s ease-in-out infinite}
+  .hf-glow-b{bottom:-10%;right:-8%;background:radial-gradient(circle,rgba(17,146,184,.5),transparent 70%);animation:hfDriftB 19s ease-in-out infinite}
+  @keyframes hfDriftA{0%,100%{transform:translate(0,0) scale(1);opacity:.42}50%{transform:translate(14%,10%) scale(1.14);opacity:.62}}
+  @keyframes hfDriftB{0%,100%{transform:translate(0,0) scale(1.05);opacity:.38}50%{transform:translate(-12%,-8%) scale(.92);opacity:.58}}
+  .hf-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(157deg,rgba(8,48,63,.86),rgba(8,48,63,.4) 52%,rgba(17,146,184,.42));animation:hfVeil 16s ease-in-out infinite}
+  @keyframes hfVeil{0%,100%{opacity:1;background-position:0% 0%}50%{opacity:.9;background-position:100% 30%}}
+  .hf-sweep{position:absolute;top:-50%;height:200%;width:55%;left:-60%;z-index:3;pointer-events:none;transform:rotate(16deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:sweep 7s ease-in-out infinite}
   @keyframes sweep{0%{left:-60%}58%,100%{left:135%}}
+  /* slow, wide luminous pass that makes the rings catch the light */
+  .hf-shine{position:absolute;top:-40%;height:180%;width:42%;left:-70%;z-index:3;pointer-events:none;transform:rotate(-18deg);mix-blend-mode:overlay;background:linear-gradient(90deg,transparent,rgba(120,220,255,.5),rgba(255,255,255,.35),transparent);animation:hfShine 11s cubic-bezier(.5,0,.5,1) infinite}
+  @keyframes hfShine{0%{left:-70%}70%,100%{left:150%}}
   .hf-p{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--brand-bright);z-index:2;box-shadow:0 0 12px var(--brand-bright);animation:floaty 9s ease-in-out infinite}
   @keyframes floaty{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-26px);opacity:.75}}
   .hf-badge{position:absolute;top:16px;left:16px;z-index:3;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:8px}
@@ -381,13 +391,11 @@
       </div>
       <div class="reveal d1">
         <div class="hf-stage" id="hfStage">
-          <!-- Photo du cabinet animée en cinémagraphe vidéo (Vidu i2v, boucle) -->
-          <video class="hf-photo hf-video" autoplay muted loop playsinline preload="auto"
-                 poster="assets/societe-poster.webp"
-                 aria-label="Le cabinet Laplace / Koytcha Conseil à Saint-Denis, en animation">
-            <source src="assets/societe-anim.webm" type="video/webm">
-            <source src="assets/societe-anim.mp4" type="video/mp4">
-          </video>
+          <!-- Visuel groupe animé en motion-design vectoriel in-page : image nette + couches lumineuses en boucle -->
+          <img class="hf-photo" src="assets/societe.webp" alt="Le groupe Laplace / Koytcha Conseil et ses entités" fetchpriority="low">
+          <div class="hf-glow hf-glow-a"></div>
+          <div class="hf-glow hf-glow-b"></div>
+          <div class="hf-shine"></div>
           <div class="hf-veil"></div>
           <div class="hf-sweep"></div>
           <span class="hf-p" style="top:24%;left:20%"></span>
