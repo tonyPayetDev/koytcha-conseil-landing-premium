@@ -7,7 +7,7 @@
 <meta name="description" content="Depuis 30 ans à vos côtés, Laplace / Koytcha Conseil accompagne les Réunionnais dans la gestion, l'investissement et l'optimisation fiscale de leur patrimoine. Conseil, Investir, Défiscaliser.">
 <meta property="og:title" content="Laplace / Koytcha Conseil — Gestion de patrimoine à La Réunion">
 <meta property="og:description" content="Conseil, Investir, Défiscaliser. 30 ans d'expertise patrimoniale au service des Réunionnais.">
-<meta property="og:image" content="assets/hero.webp">
+<meta property="og:image" content="assets/hero-koytcha.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +73,7 @@
 
   /* hero */
   .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--deep)}
-  .hero-bg{position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat;transform:scale(1.05);animation:heroZoom 14s var(--ease) forwards}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#08303f url('assets/hero-koytcha.jpg') center/cover no-repeat}
   @keyframes heroZoom{to{transform:scale(1)}}
   .hero-veil{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,48,63,.94) 0%,rgba(8,48,63,.82) 42%,rgba(8,48,63,.5) 100%)}
   .hero-veil::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 25%,rgba(17,146,184,.35),transparent 45%)}
@@ -328,7 +328,11 @@
 
 <a id="top"></a>
 <section class="hero on-dark">
-  <div class="hero-bg"></div>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto"
+         poster="assets/hero-koytcha.jpg"
+         aria-label="Siège Laplace / Koytcha Conseil — architecture créole à La Réunion">
+    <source src="assets/hero-koytcha.mp4" type="video/mp4">
+  </video>
   <div class="hero-veil"></div>
   <div class="wrap">
     <div class="hero-inner">
@@ -389,39 +393,25 @@
 <!-- APPROACH = SECTION 3 (HyperFrames motion mount) -->
 <section class="sec approach on-dark" id="approche">
   <div class="wrap">
-    <div class="split">
-      <div class="reveal">
-        <span class="eyebrow">Notre approche</span>
-        <h2>Une méthode patrimoniale, pas un produit.</h2>
-        <div class="steps">
-          <div class="step"><span class="idx">01</span><div><h4>Écouter &amp; comprendre</h4><p>Nous partons de vos objectifs de vie, de votre situation et de vos projets — jamais d'un catalogue.</p></div></div>
-          <div class="step"><span class="idx">02</span><div><h4>Analyser votre patrimoine</h4><p>Un audit à 360° : fiscalité, revenus, actifs, protection de la famille et transmission.</p></div></div>
-          <div class="step"><span class="idx">03</span><div><h4>Construire la stratégie</h4><p>Des recommandations claires et indépendantes, arbitrées avec vous et chiffrées.</p></div></div>
-          <div class="step"><span class="idx">04</span><div><h4>Accompagner dans le temps</h4><p>Un suivi régulier qui fait évoluer votre stratégie au rythme de votre vie et de la réglementation.</p></div></div>
-        </div>
-      </div>
-      <div class="reveal d1">
-        <div class="hf-stage" id="hfStage">
-          <!-- Groupe décomposé en cercles — motion-graphic HyperFrames rendu (boucle 8s) -->
-          <video class="hf-video" autoplay muted loop playsinline preload="auto"
-                 poster="assets/societe-cercles-poster.webp"
-                 aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cercles animés">
-            <source src="assets/societe-cercles.webm" type="video/webm">
-            <source src="assets/societe-cercles.mp4" type="video/mp4">
-          </video>
-          <div class="hf-scrim"></div>
-          <span class="hf-badge">Animation · Le groupe</span>
-          <div class="hf-cap">
-            <div class="t">La méthode <b>360°</b></div>
-            <div class="hf-chips">
-              <span class="hf-chip" style="animation-delay:.3s,0s">Écouter</span>
-              <span class="hf-chip" style="animation-delay:.6s,1.5s">Analyser</span>
-              <span class="hf-chip" style="animation-delay:.9s,3s">Construire</span>
-              <span class="hf-chip" style="animation-delay:1.2s,4.5s">Accompagner</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="app-head reveal">
+      <span class="eyebrow">Notre approche</span>
+      <h2>Une méthode patrimoniale, pas un produit.</h2>
+    </div>
+    <!-- Bande d'animation pleine largeur : le groupe décomposé en cercles (motion-graphic HyperFrames, boucle 8s) -->
+    <div class="hf-band reveal d1" id="hfStage">
+      <video class="hf-video" autoplay muted loop playsinline preload="auto"
+             poster="assets/societe-cercles-wide-poster.webp"
+             aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cercles animés">
+        <source src="assets/societe-cercles-wide.webm" type="video/webm">
+        <source src="assets/societe-cercles-wide.mp4" type="video/mp4">
+      </video>
+      <span class="hf-badge">Animation · Le groupe</span>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal"><span class="idx">01</span><div><h4>Écouter &amp; comprendre</h4><p>Nous partons de vos objectifs de vie, de votre situation et de vos projets — jamais d'un catalogue.</p></div></div>
+      <div class="step reveal d1"><span class="idx">02</span><div><h4>Analyser votre patrimoine</h4><p>Un audit à 360° : fiscalité, revenus, actifs, protection de la famille et transmission.</p></div></div>
+      <div class="step reveal d2"><span class="idx">03</span><div><h4>Construire la stratégie</h4><p>Des recommandations claires et indépendantes, arbitrées avec vous et chiffrées.</p></div></div>
+      <div class="step reveal d3"><span class="idx">04</span><div><h4>Accompagner dans le temps</h4><p>Un suivi régulier qui fait évoluer votre stratégie au rythme de votre vie et de la réglementation.</p></div></div>
     </div>
   </div>
 </section>
