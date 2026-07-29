@@ -133,6 +133,7 @@
   /* section 3 — animated image (cinemagraph CSS) */
   .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
   .hf-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:60% 40%;animation:kenburns 24s ease-in-out infinite alternate;will-change:transform}
+  .hf-video{animation:none;transform:scale(1.02)}
   @keyframes kenburns{0%{transform:scale(1.08) translate(0,0)}100%{transform:scale(1.24) translate(-3.5%,-2.5%)}}
   .hf-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(157deg,rgba(8,48,63,.86),rgba(8,48,63,.4) 52%,rgba(17,146,184,.42))}
   .hf-sweep{position:absolute;top:-50%;height:200%;width:55%;left:-60%;z-index:2;pointer-events:none;transform:rotate(16deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:sweep 7s ease-in-out infinite}
@@ -380,8 +381,13 @@
       </div>
       <div class="reveal d1">
         <div class="hf-stage" id="hfStage">
-          <!-- Vraie image du site (société) transformée en animation (cinémagraphe CSS) -->
-          <img class="hf-photo" src="assets/societe.webp" alt="Le cabinet Laplace / Koytcha Conseil à Saint-Denis">
+          <!-- Photo du cabinet animée en cinémagraphe vidéo (Vidu i2v, boucle) -->
+          <video class="hf-photo hf-video" autoplay muted loop playsinline preload="auto"
+                 poster="assets/societe-poster.webp"
+                 aria-label="Le cabinet Laplace / Koytcha Conseil à Saint-Denis, en animation">
+            <source src="assets/societe-anim.webm" type="video/webm">
+            <source src="assets/societe-anim.mp4" type="video/mp4">
+          </video>
           <div class="hf-veil"></div>
           <div class="hf-sweep"></div>
           <span class="hf-p" style="top:24%;left:20%"></span>
