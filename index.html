@@ -130,7 +130,40 @@
   .step .idx{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--brand-bright);min-width:44px;font-weight:500}
   .step h4{font-size:19px;font-weight:500;margin-bottom:6px;letter-spacing:.01em}
   .step p{color:rgba(255,255,255,.64);font-size:14.5px;font-weight:300}
-  /* section 3 — animated image (cinemagraph CSS) */
+  /* section 3 — bande d'animation pleine largeur sur fond blanc (le groupe décomposé en cercles, SVG/CSS pur) */
+  .hf-band{position:relative;grid-column:1/-1;margin:6px 0 40px;padding:22px 26px;background:#fff;border:1px solid rgba(8,48,63,.08);border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -46px rgba(8,48,63,.55)}
+  .hf-band::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 140% at 50% -20%,rgba(17,146,184,.06),transparent 60%)}
+  .hf-svg{display:block;width:100%;height:auto}
+  .hf-svg .disc{filter:drop-shadow(0 14px 22px rgba(8,48,63,.18))}
+  .hf-svg .ring{fill:none;stroke:rgba(17,146,184,.22);stroke-width:1.4}
+  .hf-svg .ring.r2{stroke:rgba(8,48,63,.09)}
+  .hf-svg .rings{transform-box:fill-box;transform-origin:center;animation:hfSpin 26s linear infinite}
+  .hf-svg .e2 .rings,.hf-svg .e4 .rings{animation-direction:reverse;animation-duration:32s}
+  .hf-svg .e3 .rings{animation-duration:40s}
+  .hf-svg .lbl{font:600 13px 'Inter',sans-serif;letter-spacing:.02em;text-anchor:middle;dominant-baseline:middle}
+  .hf-svg .nm{font:600 22px 'Inter',sans-serif;text-anchor:middle;dominant-baseline:middle}
+  .hf-svg .nm.big{font-size:26px}
+  .hf-link{stroke:rgba(17,146,184,.28);stroke-width:2;stroke-dasharray:5 9}
+  .hf-pulse{fill:var(--brand);filter:drop-shadow(0 0 7px rgba(17,146,184,.8))}
+  .hf-pulse.p1{animation:hfPulseX 4s linear infinite}
+  .hf-pulse.p2{animation:hfPulseX 4s linear infinite 2s}
+  @keyframes hfPulseX{0%{transform:translateX(150px);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(1110px);opacity:0}}
+  @keyframes hfSpin{to{transform:rotate(360deg)}}
+  /* décomposition : les entités jaillissent du centre vers leur place puis se recomposent — boucle 8s sans couture */
+  .hf-svg .ent{opacity:0;animation:hfFan 8s ease-in-out infinite;will-change:transform,opacity}
+  .hf-svg .e1{--from:470px}.hf-svg .e2{--from:245px}.hf-svg .e3{--from:0px}
+  .hf-svg .e4{--from:-245px}.hf-svg .e5{--from:-490px}
+  .hf-svg .e3{animation-delay:0s}.hf-svg .e2,.hf-svg .e4{animation-delay:-.18s}.hf-svg .e1,.hf-svg .e5{animation-delay:-.36s}
+  @keyframes hfFan{
+    0%{transform:translateX(var(--from)) scale(.32);opacity:0}
+    7%{opacity:0}
+    28%{transform:translateX(0) scale(1);opacity:1}
+    78%{transform:translateX(0) scale(1);opacity:1}
+    100%{transform:translateX(var(--from)) scale(.32);opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){.hf-svg .ent{opacity:1;animation:none;transform:none}.hf-svg .rings,.hf-svg .hf-pulse{animation:none}}
+  .hf-band .hf-badge{position:absolute;top:14px;left:20px;z-index:3;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:8px;font-weight:600}
+  .hf-band .hf-badge::before{background:var(--brand)}
   .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
   .hf-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#08303f}
   .hf-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,38,50,.30) 0,rgba(8,48,63,0) 26%,rgba(8,48,63,0) 56%,rgba(6,38,50,.86) 100%)}
@@ -397,15 +430,50 @@
       <span class="eyebrow">Notre approche</span>
       <h2>Une méthode patrimoniale, pas un produit.</h2>
     </div>
-    <!-- Bande d'animation pleine largeur : le groupe décomposé en cercles (motion-graphic HyperFrames, boucle 8s) -->
-    <div class="hf-band reveal d1" id="hfStage">
-      <video class="hf-video" autoplay muted loop playsinline preload="auto"
-             poster="assets/societe-cercles-wide-poster.webp"
-             aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cercles animés">
-        <source src="assets/societe-cercles-wide.webm" type="video/webm">
-        <source src="assets/societe-cercles-wide.mp4" type="video/mp4">
-      </video>
+    <!-- Bande d'animation pleine largeur : le groupe décomposé en cercles (motion-graphic SVG/CSS pur, fond blanc, boucle 8s) -->
+    <div class="hf-band reveal d1" id="hfStage" role="img" aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cinq entités animées">
       <span class="hf-badge">Animation · Le groupe</span>
+      <svg class="hf-svg" viewBox="0 0 1240 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- ligne de liaison + pulses -->
+        <line class="hf-link" x1="150" y1="190" x2="1110" y2="190"/>
+        <circle class="hf-pulse p1" cx="0" cy="190" r="4"/>
+        <circle class="hf-pulse p2" cx="0" cy="190" r="4"/>
+        <!-- Entité 1 · Conseil -->
+        <g class="ent e1">
+          <g class="rings"><circle class="ring" cx="150" cy="190" r="74"/><circle class="ring r2" cx="150" cy="190" r="92"/></g>
+          <circle class="disc" cx="150" cy="190" r="58" fill="#1192B8"/>
+          <text class="lbl" x="150" y="184" fill="rgba(255,255,255,.72)">Koytcha</text>
+          <text class="nm" x="150" y="208" fill="#fff">Conseil</text>
+        </g>
+        <!-- Entité 2 · Immo -->
+        <g class="ent e2">
+          <g class="rings"><circle class="ring" cx="375" cy="190" r="74"/><circle class="ring r2" cx="375" cy="190" r="92"/></g>
+          <circle class="disc" cx="375" cy="190" r="58" fill="#64748b"/>
+          <text class="lbl" x="375" y="184" fill="rgba(255,255,255,.72)">Koytcha</text>
+          <text class="nm" x="375" y="208" fill="#fff">Immo</text>
+        </g>
+        <!-- Entité 3 · Corporate (centre) -->
+        <g class="ent e3">
+          <g class="rings"><circle class="ring" cx="620" cy="190" r="88"/><circle class="ring r2" cx="620" cy="190" r="108"/></g>
+          <circle class="disc" cx="620" cy="190" r="72" fill="#08303f"/>
+          <text class="lbl" x="620" y="181" fill="rgba(255,255,255,.7)">Koytcha</text>
+          <text class="nm big" x="620" y="207" fill="#fff">Corporate</text>
+        </g>
+        <!-- Entité 4 · KIF -->
+        <g class="ent e4">
+          <g class="rings"><circle class="ring" cx="865" cy="190" r="74"/><circle class="ring r2" cx="865" cy="190" r="92"/></g>
+          <circle class="disc" cx="865" cy="190" r="58" fill="#3bbbdd"/>
+          <text class="lbl" x="865" y="184" fill="rgba(8,48,63,.66)">K Price ·</text>
+          <text class="nm" x="865" y="208" fill="#08303f">KIF</text>
+        </g>
+        <!-- Entité 5 · Prom -->
+        <g class="ent e5">
+          <g class="rings"><circle class="ring" cx="1110" cy="190" r="74"/><circle class="ring r2" cx="1110" cy="190" r="92"/></g>
+          <circle class="disc" cx="1110" cy="190" r="58" fill="#0c455a"/>
+          <text class="lbl" x="1110" y="184" fill="rgba(255,255,255,.72)">K</text>
+          <text class="nm" x="1110" y="208" fill="#fff">Prom</text>
+        </g>
+      </svg>
     </div>
     <div class="steps-row">
       <div class="step reveal"><span class="idx">01</span><div><h4>Écouter &amp; comprendre</h4><p>Nous partons de vos objectifs de vie, de votre situation et de vos projets — jamais d'un catalogue.</p></div></div>
