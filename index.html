@@ -130,40 +130,30 @@
   .step .idx{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--brand-bright);min-width:44px;font-weight:500}
   .step h4{font-size:19px;font-weight:500;margin-bottom:6px;letter-spacing:.01em}
   .step p{color:rgba(255,255,255,.64);font-size:14.5px;font-weight:300}
-  /* section 3 — bande d'animation pleine largeur sur fond blanc (le groupe décomposé en cercles, SVG/CSS pur) */
-  .hf-band{position:relative;grid-column:1/-1;margin:6px 0 40px;padding:22px 26px;background:#fff;border:1px solid rgba(8,48,63,.08);border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -46px rgba(8,48,63,.55)}
-  .hf-band::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 140% at 50% -20%,rgba(17,146,184,.06),transparent 60%)}
+  /* section 3 — infographie « Organisation du groupe Koytcha » : 5 cercles imbriqués, fond blanc, reveal séquentiel lent (SVG/CSS pur) */
+  .hf-band{position:relative;grid-column:1/-1;margin:6px 0 40px;padding:20px 30px 26px;background:#fff;border:1px solid rgba(7,19,95,.08);border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -46px rgba(7,19,95,.5)}
+  .hf-band::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 150% at 50% -30%,rgba(17,152,183,.06),transparent 60%)}
   .hf-svg{display:block;width:100%;height:auto}
-  .hf-svg .disc{filter:drop-shadow(0 14px 22px rgba(8,48,63,.18))}
-  .hf-svg .ring{fill:none;stroke:rgba(17,146,184,.22);stroke-width:1.4}
-  .hf-svg .ring.r2{stroke:rgba(8,48,63,.09)}
-  .hf-svg .rings{transform-box:fill-box;transform-origin:center;animation:hfSpin 26s linear infinite}
-  .hf-svg .e2 .rings,.hf-svg .e4 .rings{animation-direction:reverse;animation-duration:32s}
-  .hf-svg .e3 .rings{animation-duration:40s}
-  .hf-svg .lbl{font:600 13px 'Inter',sans-serif;letter-spacing:.02em;text-anchor:middle;dominant-baseline:middle}
-  .hf-svg .nm{font:600 22px 'Inter',sans-serif;text-anchor:middle;dominant-baseline:middle}
-  .hf-svg .nm.big{font-size:26px}
-  .hf-link{stroke:rgba(17,146,184,.28);stroke-width:2;stroke-dasharray:5 9}
-  .hf-pulse{fill:var(--brand);filter:drop-shadow(0 0 7px rgba(17,146,184,.8))}
-  .hf-pulse.p1{animation:hfPulseX 4s linear infinite}
-  .hf-pulse.p2{animation:hfPulseX 4s linear infinite 2s}
-  @keyframes hfPulseX{0%{transform:translateX(150px);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(1110px);opacity:0}}
-  @keyframes hfSpin{to{transform:rotate(360deg)}}
-  /* décomposition : les entités jaillissent du centre vers leur place puis se recomposent — boucle 8s sans couture */
-  .hf-svg .ent{opacity:0;animation:hfFan 8s ease-in-out infinite;will-change:transform,opacity}
-  .hf-svg .e1{--from:470px}.hf-svg .e2{--from:245px}.hf-svg .e3{--from:0px}
-  .hf-svg .e4{--from:-245px}.hf-svg .e5{--from:-490px}
-  .hf-svg .e3{animation-delay:0s}.hf-svg .e2,.hf-svg .e4{animation-delay:-.18s}.hf-svg .e1,.hf-svg .e5{animation-delay:-.36s}
-  @keyframes hfFan{
-    0%{transform:translateX(var(--from)) scale(.32);opacity:0}
-    7%{opacity:0}
-    28%{transform:translateX(0) scale(1);opacity:1}
-    78%{transform:translateX(0) scale(1);opacity:1}
-    100%{transform:translateX(var(--from)) scale(.32);opacity:0}
-  }
-  @media (prefers-reduced-motion:reduce){.hf-svg .ent{opacity:1;animation:none;transform:none}.hf-svg .rings,.hf-svg .hf-pulse{animation:none}}
-  .hf-band .hf-badge{position:absolute;top:14px;left:20px;z-index:3;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:8px;font-weight:600}
-  .hf-band .hf-badge::before{background:var(--brand)}
+  .hf-svg .axis{stroke:#07135F;stroke-width:2;opacity:.5}
+  .hf-svg .outer{filter:none}
+  .hf-svg .wring{fill:none;stroke:#fff;stroke-width:30;opacity:.9}
+  .hf-svg .lg-eb{font:500 15px 'Inter',sans-serif;fill:rgba(255,255,255,.85);text-anchor:middle}
+  .hf-svg .lg-nm{font:700 27px 'Inter',sans-serif;fill:#fff;text-anchor:middle;letter-spacing:.2px}
+  .hf-svg .lg-nm.sm{font-size:22px}
+  .hf-svg .lg-sec{font:600 9px 'Inter',sans-serif;fill:rgba(255,255,255,.72);text-anchor:middle;letter-spacing:1.4px}
+  .hf-svg .an-t{font:700 23px 'Inter',sans-serif;fill:#07135F;text-anchor:middle}
+  .hf-svg .an-s{font:500 14.5px 'Inter',sans-serif;fill:rgba(7,19,95,.72);text-anchor:middle}
+  .hf-svg .knot{fill:#D31B66}
+  /* reveal séquentiel : chaque entité apparaît l'une après l'autre (délai par --d), boucle lente 12s */
+  .hf-svg .ent .viz{transform-box:fill-box;transform-origin:center;opacity:0;animation:hfViz 12s var(--ease) var(--d,0s) infinite both;will-change:transform,opacity}
+  .hf-svg .ent .lab{opacity:0;animation:hfLab 12s var(--ease) var(--d,0s) infinite both}
+  .hf-svg .knot{opacity:0;animation:hfKnot 12s var(--ease) 2.6s infinite both}
+  @keyframes hfViz{0%{opacity:0;transform:scale(.5)}12%{opacity:1;transform:scale(1)}88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
+  @keyframes hfLab{0%,10%{opacity:0}18%{opacity:1}88%{opacity:1}100%{opacity:0}}
+  @keyframes hfKnot{0%,22%{opacity:0}32%{opacity:.9}55%{opacity:.5}72%{opacity:.9}88%{opacity:.8}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.hf-svg .ent .viz,.hf-svg .ent .lab,.hf-svg .knot{opacity:1;animation:none;transform:none}}
+  .hf-band .hf-badge{position:absolute;top:14px;left:22px;z-index:3;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#07135F;display:flex;align-items:center;gap:8px;font-weight:600}
+  .hf-band .hf-badge::before{background:#D31B66;box-shadow:0 0 12px rgba(211,27,102,.7)}
   .hf-stage{position:relative;border:1px solid rgba(59,187,221,.28);border-radius:6px;overflow:hidden;background:#08303f;aspect-ratio:1/1;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
   .hf-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#08303f}
   .hf-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,38,50,.30) 0,rgba(8,48,63,0) 26%,rgba(8,48,63,0) 56%,rgba(6,38,50,.86) 100%)}
@@ -433,46 +423,82 @@
     <!-- Bande d'animation pleine largeur : le groupe décomposé en cercles (motion-graphic SVG/CSS pur, fond blanc, boucle 8s) -->
     <div class="hf-band reveal d1" id="hfStage" role="img" aria-label="Le groupe Laplace / Koytcha Conseil décomposé en cinq entités animées">
       <span class="hf-badge">Animation · Le groupe</span>
-      <svg class="hf-svg" viewBox="0 0 1240 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <!-- ligne de liaison + pulses -->
-        <line class="hf-link" x1="150" y1="190" x2="1110" y2="190"/>
-        <circle class="hf-pulse p1" cx="0" cy="190" r="4"/>
-        <circle class="hf-pulse p2" cx="0" cy="190" r="4"/>
-        <!-- Entité 1 · Conseil -->
-        <g class="ent e1">
-          <g class="rings"><circle class="ring" cx="150" cy="190" r="74"/><circle class="ring r2" cx="150" cy="190" r="92"/></g>
-          <circle class="disc" cx="150" cy="190" r="58" fill="#1192B8"/>
-          <text class="lbl" x="150" y="184" fill="rgba(255,255,255,.72)">Koytcha</text>
-          <text class="nm" x="150" y="208" fill="#fff">Conseil</text>
+      <svg class="hf-svg" viewBox="0 0 1536 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="gtur" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#16A0BE"/><stop offset="1" stop-color="#078AA9"/>
+          </linearGradient>
+        </defs>
+        <!-- axe central bleu nuit reliant les entités -->
+        <line class="axis" x1="48" y1="270" x2="1488" y2="270"/>
+        <!-- Entité 1 · Koytcha Conseil (impair → libellé sous le cercle) -->
+        <g class="ent e1" style="--d:0s">
+          <g class="viz">
+            <circle class="outer" cx="236" cy="270" r="178" fill="url(#gtur)"/>
+            <circle class="wring" cx="236" cy="270" r="108"/>
+            <circle class="inner" cx="236" cy="270" r="80" fill="#1198B7"/>
+            <text class="lg-eb" x="236" y="256">Koytcha</text>
+            <text class="lg-nm" x="236" y="285">Conseil</text>
+            <text class="lg-sec" x="236" y="304">CRÉATEUR DE VALEURS</text>
+          </g>
+          <g class="lab"><text class="an-t" x="236" y="492">La finance pour particuliers</text>
+          <text class="an-s" x="236" y="516">Gestion de patrimoine · particuliers</text></g>
         </g>
-        <!-- Entité 2 · Immo -->
-        <g class="ent e2">
-          <g class="rings"><circle class="ring" cx="375" cy="190" r="74"/><circle class="ring r2" cx="375" cy="190" r="92"/></g>
-          <circle class="disc" cx="375" cy="190" r="58" fill="#64748b"/>
-          <text class="lbl" x="375" y="184" fill="rgba(255,255,255,.72)">Koytcha</text>
-          <text class="nm" x="375" y="208" fill="#fff">Immo</text>
+        <!-- Entité 2 · Koytcha Immo (pair → libellé au-dessus) -->
+        <g class="ent e2" style="--d:.55s">
+          <g class="viz">
+            <circle class="outer" cx="502" cy="270" r="178" fill="url(#gtur)"/>
+            <circle class="wring" cx="502" cy="270" r="108"/>
+            <circle class="inner" cx="502" cy="270" r="80" fill="#696969"/>
+            <text class="lg-eb" x="502" y="256">Koytcha</text>
+            <text class="lg-nm" x="502" y="285">Immo</text>
+            <text class="lg-sec" x="502" y="304">CONSEIL &amp; EXPERTISE</text>
+          </g>
+          <g class="lab"><text class="an-s" x="502" y="52">Conseil &amp; expertise immobilière</text>
+          <text class="an-t" x="502" y="78">Koytcha Immo</text></g>
         </g>
-        <!-- Entité 3 · Corporate (centre) -->
-        <g class="ent e3">
-          <g class="rings"><circle class="ring" cx="620" cy="190" r="88"/><circle class="ring r2" cx="620" cy="190" r="108"/></g>
-          <circle class="disc" cx="620" cy="190" r="72" fill="#08303f"/>
-          <text class="lbl" x="620" y="181" fill="rgba(255,255,255,.7)">Koytcha</text>
-          <text class="nm big" x="620" y="207" fill="#fff">Corporate</text>
+        <!-- Entité 3 · Koytcha Corporate (impair → libellé sous le cercle) -->
+        <g class="ent e3" style="--d:1.1s">
+          <g class="viz">
+            <circle class="outer" cx="768" cy="270" r="178" fill="url(#gtur)"/>
+            <circle class="wring" cx="768" cy="270" r="108"/>
+            <circle class="inner" cx="768" cy="270" r="80" fill="#1198B7"/>
+            <text class="lg-eb" x="768" y="256">Koytcha</text>
+            <text class="lg-nm" x="768" y="285">Corporate</text>
+            <text class="lg-sec" x="768" y="304">CESSION &amp; ACQUISITION</text>
+          </g>
+          <g class="lab"><text class="an-t" x="768" y="492">Les professionnels</text>
+          <text class="an-s" x="768" y="516">Cession &amp; acquisition d’entreprises</text></g>
         </g>
-        <!-- Entité 4 · KIF -->
-        <g class="ent e4">
-          <g class="rings"><circle class="ring" cx="865" cy="190" r="74"/><circle class="ring r2" cx="865" cy="190" r="92"/></g>
-          <circle class="disc" cx="865" cy="190" r="58" fill="#3bbbdd"/>
-          <text class="lbl" x="865" y="184" fill="rgba(8,48,63,.66)">K Price ·</text>
-          <text class="nm" x="865" y="208" fill="#08303f">KIF</text>
+        <!-- Entité 4 · K Price / KIF (pair → libellé au-dessus) -->
+        <g class="ent e4" style="--d:1.65s">
+          <g class="viz">
+            <circle class="outer" cx="1034" cy="270" r="178" fill="url(#gtur)"/>
+            <circle class="wring" cx="1034" cy="270" r="108"/>
+            <circle class="inner" cx="1034" cy="270" r="80" fill="#696969"/>
+            <text class="lg-nm sm" x="1034" y="262">K PRICE</text>
+            <text class="lg-nm sm" x="1034" y="294">KIF</text>
+          </g>
+          <g class="lab"><text class="an-s" x="1034" y="52">Gestion &amp; investissement</text>
+          <text class="an-t" x="1034" y="78">K Price / KIF</text></g>
         </g>
-        <!-- Entité 5 · Prom -->
-        <g class="ent e5">
-          <g class="rings"><circle class="ring" cx="1110" cy="190" r="74"/><circle class="ring r2" cx="1110" cy="190" r="92"/></g>
-          <circle class="disc" cx="1110" cy="190" r="58" fill="#0c455a"/>
-          <text class="lbl" x="1110" y="184" fill="rgba(255,255,255,.72)">K</text>
-          <text class="nm" x="1110" y="208" fill="#fff">Prom</text>
+        <!-- Entité 5 · K Prom (impair → libellé sous le cercle) -->
+        <g class="ent e5" style="--d:2.2s">
+          <g class="viz">
+            <circle class="outer" cx="1300" cy="270" r="178" fill="url(#gtur)"/>
+            <circle class="wring" cx="1300" cy="270" r="108"/>
+            <circle class="inner" cx="1300" cy="270" r="80" fill="#1198B7"/>
+            <text class="lg-eb" x="1300" y="258">K</text>
+            <text class="lg-nm" x="1300" y="288">PROM</text>
+          </g>
+          <g class="lab"><text class="an-t" x="1300" y="492">Le promoteur</text>
+          <text class="an-s" x="1300" y="516">Programmes immobiliers</text></g>
         </g>
+        <!-- accents roses aux points de liaison -->
+        <circle class="knot" cx="369" cy="270" r="7"/>
+        <circle class="knot" cx="635" cy="270" r="7"/>
+        <circle class="knot" cx="901" cy="270" r="7"/>
+        <circle class="knot" cx="1167" cy="270" r="7"/>
       </svg>
     </div>
     <div class="steps-row">
